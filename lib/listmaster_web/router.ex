@@ -19,7 +19,7 @@ defmodule ListmasterWeb.Router do
 
     get "/", PageController, :index
     get "/list/:id/", ListController, :index
-    post "/list/:list_id/:item", ListController, :create
+    post "/list/", ListController, :create
   end
 
   if Mix.env() in [:dev, :test] do

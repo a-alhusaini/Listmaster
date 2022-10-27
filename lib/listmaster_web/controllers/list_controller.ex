@@ -9,7 +9,7 @@ defmodule ListmasterWeb.ListController do
       tasks =
         Listmaster.ListIdMapServer.get_list_pid(:list_map, id) |> Listmaster.ListServer.all()
 
-      render(conn, "index.html", tasks: tasks)
+      render(conn, "index.html", list_id: id, tasks: tasks)
     end
   end
 
@@ -21,6 +21,6 @@ defmodule ListmasterWeb.ListController do
     pid = Listmaster.ListIdMapServer.get_list_pid(:list_map, list_id)
     Listmaster.ListServer.add(pid, item)
 
-    render(conn, "index.html", tasks: Listmaster.ListServer.all(pid))
+    render(conn, "index.html", list_id: list_id, tasks: Listmaster.ListServer.all(pid))
   end
 end
