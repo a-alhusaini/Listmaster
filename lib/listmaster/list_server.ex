@@ -10,6 +10,10 @@ defmodule Listmaster.ListServer do
   end
 
   def add(pid, item) do
+    ListmasterWeb.Endpoint.broadcast_from(self(), "room:lobby", "list_item_added", %{
+      "item" => item
+    })
+
     GenServer.cast(pid, {:add_item, item})
   end
 

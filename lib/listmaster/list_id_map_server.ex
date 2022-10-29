@@ -1,5 +1,4 @@
 defmodule Listmaster.ListIdMapServer do
-  require Logger
   use GenServer
 
   def start_link(_) do
@@ -11,12 +10,17 @@ defmodule Listmaster.ListIdMapServer do
   end
 
   def add_list_pid_link(pid, id) do
-    Logger.info("adding #{id} to registry")
+    ListmasterWeb.Endpoint.broadcast_from(
+      self(),
+      "room:lobby",
+      "new_list",
+      %{}
+    )
+
     GenServer.cast(pid, {:add_list_id, id})
   end
 
   def get_list_pid(pid, id) do
-    Logger.info("Getting #{id} from registry")
     GenServer.call(pid, {:get_list_pid, id})
   end
 

@@ -17,7 +17,7 @@ defmodule ListmasterWeb.Router do
   scope "/", ListmasterWeb do
     pipe_through :browser
 
-    get "/", PageController, :index
+    live "/", ListLive
     get "/list/:id/", ListController, :index
     post "/list/", ListController, :create
   end
