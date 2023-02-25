@@ -1,13 +1,11 @@
 <h1>this is the list template..</h1>
-<%= form_for @conn, Routes.list_path(@conn, :create), fn f -> %>
+<.form action="/list" method="POST" for={to_form(%{list_id: {@list_id}, item: ""})}>
   <div style="display: none;">
-    <%= label(f, :list_id, "List Name (Leave alone!)") %>
-    <%= text_input(f, :list_id, value: @list_id) %>
+    <.input errors={[]} value={@list_id} id="list_id" name="list_id" type="text" field={:list_id} />
   </div>
-  <%= label(f, :Item, "Item body") %>
-  <%= text_input(f, :item) %>
-  <%= submit("Add Item") %>
-<% end %>
+  <.input errors={[]} value="" id="item" name="item" type="text" field={:item} />
+  <.button>Submit!</.button>
+</.form>
 <%= for item <- @tasks do %>
   <p>
     <%= item %>

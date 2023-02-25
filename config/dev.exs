@@ -2,8 +2,8 @@ import Config
 
 # Configure your database
 config :listmaster, Listmaster.Repo,
-  username: "postgres",
-  password: "postgres",
+  username: "smartix",
+  password: "smartix",
   hostname: "localhost",
   database: "listmaster_dev",
   stacktrace: true,

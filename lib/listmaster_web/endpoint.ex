@@ -22,7 +22,7 @@ defmodule ListmasterWeb.Endpoint do
     at: "/",
     from: :listmaster,
     gzip: false,
-    only: ~w(assets fonts images favicon.ico robots.txt)
+    only: ListmasterWeb.static_paths()
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
