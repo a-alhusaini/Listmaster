@@ -8,6 +8,11 @@ defmodule ListmasterWeb.ListLive do
       ListmasterWeb.Endpoint.subscribe("room:lobby")
     end
 
+    socket =
+      assign(socket,
+        items: Map.keys(Listmaster.ListIdMapServer.get_all_lists(:list_map))
+      )
+
     {:ok, socket}
   end
 
@@ -20,9 +25,9 @@ defmodule ListmasterWeb.ListLive do
       lists: <%= @list_count %>
     </h1>
     <h1>
-      Items are as follows
+      The lists are:
       <%= for item <- @items do %>
-        <%= item %>
+        <%= item %>,
       <% end %>
     </h1>
     """

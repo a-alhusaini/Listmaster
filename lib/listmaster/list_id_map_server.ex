@@ -9,6 +9,10 @@ defmodule Listmaster.ListIdMapServer do
     {:ok, %{}}
   end
 
+  def get_all_lists(pid) do
+    GenServer.call(pid, {:get_all_lists})
+  end
+
   def add_list_pid_link(pid, id) do
     ListmasterWeb.Endpoint.broadcast_from(
       self(),
@@ -22,6 +26,10 @@ defmodule Listmaster.ListIdMapServer do
 
   def get_list_pid(pid, id) do
     GenServer.call(pid, {:get_list_pid, id})
+  end
+
+  def handle_call({:get_all_lists}, _from, state) do
+    {:reply, state, state}
   end
 
   def handle_call({:get_list_pid, id}, _from, state) do
